@@ -10,7 +10,7 @@ export const collections: {
  * Initializes the connection to the database
  * @param uri database uri used to connect to the databsse
  */
-async function connectToDatabase(uri: string) {
+async function connectionToDatabase(uri: string) {
   //create mongodb client
   const client = new mongodb.MongoClient(uri);
   await client.connect();
@@ -25,7 +25,7 @@ async function connectToDatabase(uri: string) {
 }
 
 // update json validation so that the projects will always look the same
-async function applySchemaValidation(db: mongodb.db) {
+async function applySchemaValidation(db: mongodb.Db) {
   const jsonSchema = {
     $jsonSchema: {
       bsonType: "object",
@@ -52,3 +52,5 @@ async function applySchemaValidation(db: mongodb.db) {
       }
     });
 }
+
+export default connectionToDatabase;
